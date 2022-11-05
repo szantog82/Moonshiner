@@ -21,6 +21,7 @@ use App\Http\Controllers\UserOrdersController;
 Route::get('/', [HomeController::class, 'index'])->name("home");
 
 Route::get('/register', [RegisterController::class, 'index'])->name("register");
+Route::post('/register_user', [RegisterController::class, 'storeUser'])->name("register.store.user");
 
 Route::get('/login', [LoginController::class, 'index'])->name("login");
 
