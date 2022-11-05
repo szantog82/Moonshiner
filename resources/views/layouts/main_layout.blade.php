@@ -24,8 +24,9 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
+                @if(auth()->check())
                 	<li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{{route('home')}}"><b><i>Welcome, user</i></b></a>
+                        <a class="nav-link" aria-current="page" href="{{route('home')}}"><b><i>Welcome, {{auth()->user()->name}}</i></b></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{route('my_orders')}}">My orders</a>
@@ -33,12 +34,14 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{route('logout')}}">Logout</a>
                     </li>
+                @else
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{route('login')}}">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{route('register')}}">Register</a>
                     </li>
+                @endif
                 </ul>
             </div>
         </div>
