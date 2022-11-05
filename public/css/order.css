@@ -1,0 +1,28 @@
+.item-container {
+	width: 200px;
+	height: 250px;
+	border: 1px solid gray;
+	margin: 20px;
+	position: relative
+}
+
+.item-container img {
+	max-width: 150px;
+	max-height: 150px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+.item-container input {
+	position: absolute;
+	bottom: 0;
+	width: 50%;
+}
+
+.item-container button {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
