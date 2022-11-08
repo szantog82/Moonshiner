@@ -2,7 +2,8 @@
   "A": {
     "description": "Ordering more different items than 'limit'; price reduction by 'reduction'",
     "limit": 4,
-    "reduction": 5
+    "reduction": 5,
+    "is_active": 1
   },
   "B": {
     "description": "Ordering more from one item: if the number of pieces of that item is higher than 'limit', one is free; product contains the ids of the items",
@@ -13,21 +14,25 @@
       4,
       5
     ],
-    "limit": 2
+    "limit": 1,
+    "is_active": 1
   },
   "C": {
     "description": "if first order (not ordered before), one from 'product' is free; product contains the id of the item",
-    "product": 4
+    "product": 4,
+    "is_active": 1
   },
   "D": {
     "description": "Promo code; if 'free' is 1, whole order is free; otherwise reduction of sum price by 'reduction'; 'code' contains the promo code",
     "free": 1,
     "reduction": 0,
-    "code": "Welcome1337"
+    "code": "Welcome1337",
+    "is_active": 1
   },
   "E": {
     "description": "when 'productA' and 'productB' are in the cart, one from 'productA' is free; productA and productB contain the id of the item",
     "productA": 1,
-    "productB": 2
+    "productB": 2,
+    "is_active": 1
   }
 }
