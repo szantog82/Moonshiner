@@ -26,3 +26,34 @@
 	right: 0;
 	bottom: 0;
 }
+
+#summary-div {
+	padding: 10px;
+	width: 50%;
+	border: 1px solid blue;
+	margin-top: 5em;
+	margin-bottom: 10em;
+	border: 1px solid blue;
+}
+
+.item-sum-list-input {
+	width: 50px;
+}
+
+#empty-cart-mesg {
+	position: absolute;
+	right: 10em;
+	color: red;
+}
+
+#discounts-tbody {
+	border: 1px solid red;
+}
+
+#summary-div {
+	visibility: hidden;
+}
+
+#store-order-btn {
+	margin: 2em;
+}
