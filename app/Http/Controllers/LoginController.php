@@ -19,6 +19,8 @@ class LoginController extends Controller
         ]))) {
             return view("login", ["error_message" => "The email or password is incorrect!"]);
         }
+        session()->forget('order.items');
+        session()->forget("promoCode");
         return redirect()->to(route('home'));
     }
 }
