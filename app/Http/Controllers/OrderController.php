@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\HoodiePriceComputer;
 use App\Models\Order;
+
 class OrderController extends Controller
 {
 
@@ -17,7 +18,7 @@ class OrderController extends Controller
 
     private static function isFirstOrdering()
     {
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return 0;
         }
         $user_id = auth()->user()->id;
@@ -71,7 +72,7 @@ class OrderController extends Controller
     {
         $promo_code = $request->input("promoCode");
         session()->put("promoCode", $promo_code);
-        if ($promo_code === HoodiePriceComputer::getActivePromoCode() && HoodiePriceComputer::getActivePromoCode() != -1) { //-1: promo code not active
+        if ($promo_code === HoodiePriceComputer::getActivePromoCode() && HoodiePriceComputer::getActivePromoCode() != - 1) { // -1: promo code not active
             return 1;
         } else {
             return 0;
@@ -80,23 +81,27 @@ class OrderController extends Controller
 
     public function storeOrder(Request $request)
     {
-        try {
-            $items = HoodiePriceComputer::calculatePrice(session('order.items'), self::isFirstOrdering(), session("promoCode"));
-            $order_id = Order::max("id") + 1;
-            foreach ($items as $key => $value) {
-                $order = new Order();
-                $order->id = $order_id;
-                $order->item_id = $key;
-                $order->user_id = auth()->user()->id;
-                $order->count = $value;
-                $order->saveOrFail();
+        if (auth()->check()) {
+            try {
+                $items = HoodiePriceComputer::calculatePrice(session('order.items'), self::isFirstOrdering(), session("promoCode"));
+                $order_id = Order::max("id") + 1;
+                foreach ($items as $key => $value) {
+                    $order = new Order();
+                    $order->id = $order_id;
+                    $order->item_id = $key;
+                    $order->user_id = auth()->user()->id;
+                    $order->count = $value;
+                    $order->saveOrFail();
+                }
+                session()->forget('order.items');
+                session()->forget("promoCode");
+                return 1;
+            } catch (\Exception $e) {
+                return $e;
+                return 0;
             }
-            session()->forget('order.items');
-            session()->forget("promoCode");
-            return 1;
-        } catch (\Exception $e) {
-            return $e;
-            return 0;
+        } else {
+            return;
         }
     }
 }
