@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\HoodiePriceComputer;
 use App\Models\Order;
+use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller
 {
@@ -97,6 +98,8 @@ class OrderController extends Controller
                 session()->forget("promoCode");
                 return 1;
             } catch (\Exception $e) {
+                log::error("Error in storing order%");
+                log::error($e);
                 return $e;
                 return 0;
             }
