@@ -83,7 +83,7 @@ class OrderController extends Controller
     {
         if (auth()->check()) {
             try {
-                $items = HoodiePriceComputer::calculatePrice(session('order.items'), self::isFirstOrdering(), session("promoCode"));
+                $items = HoodiePriceComputer::convertProductListToArray(session('order.items'));
                 $order_id = Order::max("id") + 1;
                 foreach ($items as $key => $value) {
                     $order = new Order();
